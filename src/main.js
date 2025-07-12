@@ -2,12 +2,12 @@ import data from './workers.json';
 
 const state = {
   bestScores: {
-    fa: [0, 0, 0, 0, 0, 0],
-    sm: [0, 0, 0, 0, 0, 0],
-    mi: [0, 0, 0, 0, 0, 0],
-    sh: [0, 0, 0, 0, 0, 0],
-    di: [0, 0, 0, 0, 0, 0],
-    ma: [0, 0, 0, 0, 0, 0],
+    fa: 0,
+    sm: 0,
+    mi: 0,
+    sh: 0,
+    di: 0,
+    ma: 0,
   },
   enteredWorker: {
     w: 0,
@@ -50,10 +50,10 @@ function calculateWorkersFromDB(data) {
     // fa,sn,mi,sh,di,ma
     for (let [skill, outputs] of Object.entries(state.skills)) {
       const tier = worker[skill];
-      const bestScore = state.bestScores[skill][tier];
+      const bestScore = state.bestScores[skill];
       const currentWorkerScore = outputs[tier] / worker.w;
       if (currentWorkerScore > bestScore)
-        state.bestScores[skill][tier] = currentWorkerScore;
+        state.bestScores[skill] = currentWorkerScore;
     }
   }
 }
@@ -71,7 +71,7 @@ function updateRank(rankEl) {
   const score = enteredWorkerSkillObj.score;
   const tier = enteredWorkerSkillObj.tier;
   if (tier === null) return;
-  const rank = getRank(score, state.bestScores[skillName][tier]);
+  const rank = getRank(score, state.bestScores[skillName]);
   rankEl.textContent = rank;
 }
 
