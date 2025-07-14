@@ -92,3 +92,8 @@ fieldset.skill {
   position: absolute;
   bottom: -40px;
 }
+
+.percentage {
+  position: absolute;
+  bottom: -60px;
+}
