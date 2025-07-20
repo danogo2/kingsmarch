@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -11,9 +17,13 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  font-size: 62.5%;
+  --color-black: #242424;
 }
 
 body {
+  font-size: 1.6rem;
   margin: 0;
   display: flex;
   min-width: 320px;
@@ -23,6 +33,7 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  margin: 28px 0;
 }
 
 #app {
@@ -32,15 +43,17 @@ h1 {
   text-align: center;
 }
 
-.worker {
-  display: flex;
-  gap: 1rem; /* space between fieldsets */
-  flex-wrap: nowrap; /* prevent wrapping (optional) */
-  /* overflow-x: auto; /*allow scrolling if too many fieldsets */
+/* WORKER CHECK */
+
+.worker-check {
+  display: grid;
+  grid-template-columns: repeat(7, auto);
+  grid-template-rows: 1fr 0.5fr;
   padding: 1rem;
+  gap: 2rem;
 }
 
-.worker fieldset {
+.worker-check fieldset {
   display: flex;
   flex-direction: column;
   align-items: stretch; /* center items horizontally */
@@ -52,48 +65,78 @@ h1 {
   /*flex-shrink: 0; /* prevent shrinking in row */
 }
 
-.worker legend {
+.worker-check legend {
   font-weight: bold;
   margin-bottom: 0.5rem;
   text-align: center;
   padding: 0px 10px;
 }
 
-.worker div {
+.worker-check div {
   display: flex;
   align-items: center;
   margin-bottom: 0.3rem;
   justify-content: stretch;
 }
 
-.worker input[type='radio'] {
+.worker-check input[type='radio'] {
   margin-left: 0.8rem;
   transform: scale(1.2);
   cursor: pointer;
 }
 
-.worker label {
-  font-size: 1rem;
+.worker-check label {
   cursor: pointer;
   width: 100%;
   transition: border-color 0.2s ease-in-out;
   border: 1px solid transparent;
 }
 
-.worker label:hover {
+.worker-check label:hover {
   border-color: #ccc;
 }
 
-fieldset.skill {
-  position: relative;
-}
-
 .rank {
-  position: absolute;
-  bottom: -40px;
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem;
+  gap: 5px;
 }
 
-.percentage {
-  position: absolute;
-  bottom: -60px;
+.rank[data-skill='fa'] {
+  grid-column-start: 2;
+}
+
+/* WAGE TABLE */
+.wage-table {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.wage-table-skills {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 20px;
+}
+
+.wage-table-skill {
+  padding: 0.8rem;
+  cursor: pointer;
+}
+
+.wage-table-wages {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  gap: 2px;
+}
+
+.wage-table-wages div {
+  padding: 1rem;
+  border: 1px solid #121212;
+}
+.t1 {
+  grid-column-start: 2;
 }
