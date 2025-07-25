@@ -20,27 +20,52 @@
   box-sizing: border-box;
   font-size: 62.5%;
   --color-black: #242424;
+  background: url('../background.png') center center / cover no-repeat fixed;
 }
 
 body {
   font-size: 1.6rem;
   margin: 0;
-  display: flex;
   min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-  margin: 28px 0;
 }
 
 #app {
+  min-height: 100vh;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #242424;
+  background: linear-gradient(
+    90deg,
+    rgba(36, 36, 36, 0.53) 0%,
+    rgba(24, 24, 24, 0.57) 50%,
+    rgba(6, 6, 6, 0.52) 100%
+  );
+}
+
+h1 {
+  font-size: 18em;
+  margin: 2px 0 14px 0;
+  letter-spacing: 1px;
+  color: #333332;
+  background-image: linear-gradient(
+    45deg,
+    #33333281,
+    #c2bbae81 50%,
+    #33333281 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
 }
 
 /* WORKER CHECK */
@@ -49,8 +74,16 @@ h1 {
   display: grid;
   grid-template-columns: repeat(7, auto);
   grid-template-rows: 1fr 0.5fr;
-  padding: 1rem;
-  gap: 2rem;
+  padding: 2rem;
+  gap: 1rem;
+  background: #242424;
+  background: linear-gradient(
+    90deg,
+    rgba(36, 36, 36, 0.53) 0%,
+    rgba(24, 24, 24, 0.57) 50%,
+    rgba(6, 6, 6, 0.52) 100%
+  );
+  border-radius: 10px;
 }
 
 .worker-check fieldset {
@@ -75,8 +108,7 @@ h1 {
 .worker-check div {
   display: flex;
   align-items: center;
-  margin-bottom: 0.3rem;
-  justify-content: stretch;
+  justify-content: space-around;
 }
 
 .worker-check input[type='radio'] {
@@ -98,8 +130,8 @@ h1 {
 
 .rank {
   display: flex;
-  justify-content: space-around;
-  padding: 1rem;
+  justify-content: space-between;
+  padding: 0 1rem;
   gap: 5px;
 }
 
@@ -107,23 +139,44 @@ h1 {
   grid-column-start: 2;
 }
 
-/* WAGE TABLE */
+.letter,
+.percentage {
+  flex-basis: 50%;
+}
+
+.img-rank {
+  width: 36px;
+  height: 55px;
+}
+
+/* *************************** WAGE TABLE ************************* */
 .wage-table {
   display: flex;
   flex-direction: column;
-  row-gap: 20px;
+  background: #242424;
+  background: linear-gradient(
+    90deg,
+    rgba(36, 36, 36, 0.53) 0%,
+    rgba(24, 24, 24, 0.57) 50%,
+    rgba(6, 6, 6, 0.52) 100%
+  );
+  border-radius: 10px;
+  margin-top: 10px;
 }
 
 .wage-table-skills {
   display: flex;
   width: 100%;
-  justify-content: center;
+  justify-content: space-around;
   gap: 20px;
+  padding: 6px 0px;
 }
 
 .wage-table-skill {
   padding: 0.8rem;
   cursor: pointer;
+  background-color: transparent;
+  border: none;
 }
 
 .wage-table-wages {
@@ -137,6 +190,132 @@ h1 {
   padding: 1rem;
   border: 1px solid #121212;
 }
+
 .t1 {
   grid-column-start: 2;
+}
+
+.btn-fa {
+  background-image: url('../public/farming_normal.png');
+  background-size: contain;
+  width: 60px;
+  height: 56px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.btn-fa.btn--active {
+  background-image: url('../public/farming_active.png');
+}
+
+.btn-fa:hover {
+  background-image: url('../public/farming_hover.png');
+}
+
+.btn-sm {
+  background-image: url('../public/smelting_normal.png');
+  background-size: contain;
+  width: 60px;
+  height: 56px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.btn-sm.btn--active {
+  background-image: url('../public/smelting_active.png');
+}
+
+.btn-sm:hover {
+  background-image: url('../public/smelting_hover.png');
+}
+
+.btn-mi {
+  background-image: url('../public/mining_normal.png');
+  background-size: contain;
+  width: 60px;
+  height: 56px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.btn-mi.btn--active {
+  background-image: url('../public/mining_active.png');
+}
+
+.btn-mi:hover {
+  background-image: url('../public/mining_hover.png');
+}
+
+.btn-sh {
+  background-image: url('../public/shipping_normal.png');
+  background-size: contain;
+  width: 60px;
+  height: 56px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.btn-sh.btn--active {
+  background-image: url('../public/shipping_active.png');
+}
+
+.btn-sh:hover {
+  background-image: url('../public/shipping_hover.png');
+}
+
+.btn-di {
+  background-image: url('../public/disenchanting_normal.png');
+  background-size: contain;
+  width: 60px;
+  height: 56px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.btn-di.btn--active {
+  background-image: url('../public/disenchanting_active.png');
+}
+
+.btn-di:hover {
+  background-image: url('../public/disenchanting_hover.png');
+}
+
+.btn-ma {
+  background-image: url('../public/mapping_normal.png');
+  background-size: contain;
+  width: 60px;
+  height: 56px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.btn-ma.btn--active {
+  background-image: url('../public/mapping_active.png');
+}
+
+.btn-ma:hover {
+  background-image: url('../public/mapping_hover.png');
+}
+
+.wage-table-skill-header {
+  font-size: 11em;
+  margin: 2px 0 14px 0;
+  letter-spacing: 1px;
+  color: #333332;
+  background-image: linear-gradient(
+    45deg,
+    #33333281,
+    #a3988581 20%,
+    #c2bbae81 50%,
+    #a3988581 70%,
+    #33333281 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
 }

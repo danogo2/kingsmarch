@@ -149,7 +149,11 @@ function getRank(score, bestScore) {
   } else {
     rank = 'F';
   }
-  return { rank, percentageScore: Number((ratio * 100).toFixed()) };
+  return {
+    rank,
+    percentageScore: Number((ratio * 100).toFixed()),
+    html: `<img class="img-rank" src="/kingsmarch/rank_${rank}_204x314.png" alt="rank ${rank}">`,
+  };
 }
 
 function updateRank(skillName) {
@@ -157,8 +161,11 @@ function updateRank(skillName) {
   const tier = enteredWorkerSkillObj.tier;
   if (tier === null) return;
   const score = enteredWorkerSkillObj.score;
-  const { rank, percentageScore } = getRank(score, state.bestScores[skillName]);
-  state.rankElementsMap.get(skillName).letterEl.textContent = rank;
+  const { rank, percentageScore, html } = getRank(
+    score,
+    state.bestScores[skillName]
+  );
+  state.rankElementsMap.get(skillName).letterEl.innerHTML = html;
   state.rankElementsMap.get(
     skillName
   ).percentageEl.textContent = `${percentageScore}%`;
@@ -232,6 +239,23 @@ function setupWorkerCheck() {
   setWorkerCheckEventListeners();
 }
 
+function getSkillFullName() {
+  switch (state.wageTableActiveSkill) {
+    case 'fa':
+      return 'Farming';
+    case 'sm':
+      return 'Smelting';
+    case 'mi':
+      return 'Mining';
+    case 'sh':
+      return 'Shipping';
+    case 'di':
+      return 'Disenchanting';
+    case 'ma':
+      return 'Mapping';
+  }
+}
+
 // WORKERS WAGE TABLE
 function setupWageTable() {
   // Wage Table State Setup
@@ -281,13 +305,23 @@ function updateWageTableView() {
     }
   }
 }
+
 function setWageTableEventListeners() {
   document
     .querySelector('.wage-table-skills')
     .addEventListener('click', event => {
       const target = event.target;
-      if (target.className === 'wage-table-skill') {
+      if (target.classList.contains('wage-table-skill')) {
+        document
+          .querySelector(`.btn-${state.wageTableActiveSkill}`)
+          .classList.remove('btn--active');
         state.wageTableActiveSkill = target.dataset.skill;
+        document
+          .querySelector(`.btn-${state.wageTableActiveSkill}`)
+          .classList.add('btn--active');
+        document.querySelector('.wage-table-skill-header').textContent =
+          getSkillFullName();
+
         updateWageTableView();
       }
     });
